@@ -1,0 +1,31 @@
+
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/demo_shop?characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+
+
+
+debug: true

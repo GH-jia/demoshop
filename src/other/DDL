@@ -1,0 +1,10 @@
+//add a table named 'sckilled'
+create table sckilled(
+sckill_id int not null auto_increment primary key,
+commodity_id int not null,
+shop_id int not null,
+user_id int not null,
+name varchar(10) not null default '',
+price double not null default 0.0,
+total double not null default 0.0
+);

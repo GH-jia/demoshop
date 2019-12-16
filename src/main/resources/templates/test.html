@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<script>
+    var stompClient;
+    function connect() {
+        var url = '/getSckill';
+        var socket = SockJS(url);
+        stompClient = Stomp.over(socket);
+        stompClient.connect({},function (frame) {
+            console.log('Connected:',frame);
+            stompClient.subscribe('/topic/greetings',function (greeting) {
+                console.log('Received:');
+                console.log(JSON.parse(greeting.body));
+                // console.log(greeting);
+            });
+        });
+    }
+</script>
+<body>
+<div><botton onclick="connect()">connect</botton></div>
+
+</body>
+</html>
