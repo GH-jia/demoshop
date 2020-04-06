@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 public class RedisConfig {
-
+//配置redis缓存池
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")

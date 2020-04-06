@@ -1,8 +1,11 @@
 package com.example.demoshop.controller.viewObject;
 
 public class UserVO {
+//    用户id
     private Integer id;
+//    用户电话
     private String telphone;
+//    用户余额
     private Double money;
 
     public Integer getId() {

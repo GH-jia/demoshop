@@ -6,9 +6,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class ShopedVO {
-    private int userId;
-    private int commodityId;
+    private int userId;//用户id
+    private int commodityId;//商品id
+//    商品数量
     private int count;
+//    商品价格
     private double price;
 
     public ShopedVO(){}

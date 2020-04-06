@@ -13,11 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaseController {
+//    全局捕获异常
     @ExceptionHandler(Exception.class)
+//    改变服务器响应的状态码
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public CommonReturnType exceptionHandler(HttpServletRequest request,Exception ex){
         Map<String,Object> response = new HashMap<>();
+        //instanceof是Java中的二元运算符，左边是对象，右边是类；当对象是右边类或子类所创建对象时，返回true；否则，返回false
+//        检查异常是否为自定义BusinessException类型异常
         if (ex instanceof BusinessException){
             BusinessException businessException = (BusinessException) ex;
             response.put("errCode",businessException.getErrCode());
@@ -27,6 +31,7 @@ public class BaseController {
             response.put("errCode", EmBusinessError.COMMON_ERROR.getErrCode());
             response.put("errMsg",ex);
         }
+//        把返回信息装载到统一的返回数据类型中
         return CommonReturnType.create(response,"fail");
     }
 }

@@ -43,14 +43,14 @@ public class SckillServiceImpl implements SckillService {
             throw new BusinessException(EmBusinessError.PARAMETER_ERROR);
         }
 
-        //add sckillModel to cache
+        //add sckillModel to cache，把sckillModel信息加载到redis缓存中
         String keyb = "shopUserId"+sckillModel.getUserId()+sckillModel.getShopId();
         String keya = "commodityId"+sckillModel.getCommodityId();
         Map<String,String> preMap = redisUtils.hget(keyb);
         if (preMap == null){
             preMap = new HashMap<>();
         }
-
+//把sckillModel进行json序列化
         String strModel = JSONObject.toJSONString(sckillModel);
 
         preMap.put(keya,strModel);
@@ -72,6 +72,7 @@ public class SckillServiceImpl implements SckillService {
     }
 
     //shoped
+//    声明式事物管理
     @Transactional
     public void sckilled(String key) throws Exception {
         Map<String,String> map = redisUtils.hget(key);
@@ -79,6 +80,7 @@ public class SckillServiceImpl implements SckillService {
             for (Map.Entry<String,String> entry:
                     map.entrySet()) {
                 String strModel = entry.getValue();
+//                把json字符串转为对象
                 SckillModel sckillModel = JSONObject.parseObject(strModel,SckillModel.class);
                 SckilledDO sckillDO = new SckilledDO();
                 BeanUtils.copyProperties(sckillModel,sckillDO);

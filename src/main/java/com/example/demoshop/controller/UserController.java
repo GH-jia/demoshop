@@ -69,7 +69,7 @@ public class UserController extends BaseController {
         return CommonReturnType.create(null);
 
     }
-
+//用MD5给密码加密
     private String EncodeByMd5(String password) throws NoSuchAlgorithmException {
 
         MessageDigest md5 = MessageDigest.getInstance("MD5");
@@ -77,7 +77,7 @@ public class UserController extends BaseController {
         String newstr = encoder.encodeToString(md5.digest(password.getBytes()));
         return newstr;
     }
-
+//获取短信验证码
     @RequestMapping(value = "/getotpcode")
     public CommonReturnType getOtpCode(@Param("telphone") String telphone){
         Random random = new Random();

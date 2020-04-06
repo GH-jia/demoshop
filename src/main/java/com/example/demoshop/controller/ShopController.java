@@ -37,8 +37,9 @@ public class ShopController extends BaseController {
             ShopVO shopVO = converVOFromModel(shopModel);
             return shopVO;
         }).collect(Collectors.toList());
-
+        
         return CommonReturnType.create(shopModelList);
+
     }
 
     private ShopVO converVOFromModel(ShopModel shopModel){
